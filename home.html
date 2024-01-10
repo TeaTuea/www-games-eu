@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Iframe Button</title>
+  <style>
+    /* Styling for the button */
+    #openButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3a7ba0;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    /* Style for the blurred placeholder */
+    #blurryGame {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1040px;
+      height: 600px;
+      max-width: 95%;
+      max-height: 95%;
+      background: url('https://i.imgur.com/fuwMp14.png') no-repeat;
+      background-size: cover;
+      filter: blur(10px);
+      z-index: 9998;
+    }
+    /* Iframe container initially hidden */
+    #iframeContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1040px;
+      height: 600px;
+      max-width: 95%;
+      max-height: 95%;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 9998;
+    }
+    /* Close button style */
+    #closeButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;  
+      padding: 5px;
+      font-size: 20px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      line-height: 1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Blurred placeholder for the game initially displayed -->
+  <div id="blurryGame"></div>
+
+  <!-- Iframe container initially hidden -->
+  <div id="iframeContainer">
+    <button id="closeButton" onclick="closeIframe()">X</button>
+    <iframe id="gameIframe" src="" width="100%" height="100%" title="Stickman Hook"></iframe>
+  </div>
+
+  <!-- Button to open iframe -->
+  <button id="openButton">Play</button>
+
+  <script>
+    // Function to open iframe and hide the blurred placeholder
+    document.getElementById('openButton').addEventListener('click', function() {
+      document.getElementById('openButton').style.display = 'none';
+      document.getElementById('blurryGame').style.display = 'none';
+      document.getElementById('iframeContainer').style.display = 'block';
+      document.getElementById('gameIframe').src = 'https://cdn.bubbleshooter.net/games/stickman-hook/?gd_sdk_referrer_url=https://www.jopi.com/game/game/stickman-hook/';
+    });
+
+    // Function to close iframe and show the button and blurred game again
+    function closeIframe() {
+      document.getElementById('openButton').style.display = 'block';
+      document.getElementById('blurryGame').style.display = 'block';
+      document.getElementById('iframeContainer').style.display = 'none';
+      document.getElementById('gameIframe').src = '';
+    }
+  </script>
+</body>
+</html>
